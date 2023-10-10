@@ -1,34 +1,20 @@
 class Solution {
     public int minOperations(int[] nums) {
-        final int n = nums.length;
-    int ans = n;
-
-    Arrays.sort(nums);
-    nums = Arrays.stream(nums).distinct().toArray();
-
-    for (int i = 0; i < nums.length; ++i) {
-      final int start = nums[i];
-      final int end = start + n - 1;
-      final int index = firstGreater(nums, end);
-      final int uniqueLength = index - i;
-      ans = Math.min(ans, n - uniqueLength);
-    }
-
-    return ans;
-  }
-
-  private int firstGreater(int[] nums, int target) {
-    int l = 0;
-    int r = nums.length;
-
-    while (l < r) {
-      final int m = (l + r) / 2;
-      if (nums[m] > target)
-        r = m;
-      else
-        l = m + 1;
-    }
-
-    return l;
+     int n = nums.length;
+        Arrays.sort(nums);
+        int m = 1;
+        for (int i = 1; i < n; ++i) {
+            if (nums[i] != nums[i - 1]) {
+                nums[m++] = nums[i];
+            }
+        }
+        int ans = n;
+        for (int i = 0, j = 0; i < m; ++i) {
+            while (j < m && nums[j] - nums[i] <= n - 1) {
+                ++j;
+            }
+            ans = Math.min(ans, n - (j - i));
+        }
+        return ans;
     }
 }
