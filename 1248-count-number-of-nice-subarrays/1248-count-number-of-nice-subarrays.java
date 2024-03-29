@@ -18,8 +18,6 @@ class Solution {
     
     public int numberOfSubarrays(int[] nums, int k) {
         int n = nums.length;
-        System.out.println(helper(nums,k,n));
-        System.out.println(helper(nums,k-1,n));
         return helper(nums,k,n) - helper(nums,k-1,n);
     }
 }
