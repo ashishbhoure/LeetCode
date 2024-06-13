@@ -12,23 +12,23 @@ class Solution {
     public int pairSum(ListNode head) {
 //         find mid 
         
-        ListNode slow = new ListNode();
-         ListNode fast = new ListNode();
+        ListNode slow = head;
+         ListNode fast = head;
         
-        slow = head;
-        fast = head;
+        // slow = head;
+        // fast = head;
         
         while(fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
         }
         
-        ListNode mid = new ListNode();
-        mid = slow;
+        ListNode mid = slow;
+        // mid = slow;
         
         // reverse the second half
-        ListNode prev = new ListNode();
-        ListNode nextNode = new ListNode();
+        ListNode prev = null;
+        ListNode nextNode = null;
         
         while(mid != null){
             nextNode = mid.next;
@@ -41,8 +41,8 @@ class Solution {
 //         add the sum 
         
         int result = 0;
-        ListNode curr = new ListNode();
-        curr = head;
+        ListNode curr = head;
+        // curr = head;
         
         while(prev != null){
             result = Math.max(result,curr.val+prev.val);
