@@ -40,12 +40,31 @@ class Solution {
         findMaxDiff(root.right);
     }
     
+//     Optimal Solution 
+    int findDiffUtil(TreeNode root,int maxV,int minV){
+        if(root == null){
+            return Math.abs(maxV - minV);
+        }
+        
+        maxV = Math.max(maxV,root.val);
+        minV = Math.min(minV, root.val);
+        
+        int l = findDiffUtil(root.left,maxV,minV);
+        int r = findDiffUtil(root.right,maxV,minV);
+        
+        return Math.max(l , r);
+    }
+    
     
     public int maxAncestorDiff(TreeNode root) {
-        maxDiff = -1;
+//         maxDiff = -1;
         
-        findMaxDiff(root);
+//         findMaxDiff(root);
         
-        return maxDiff;
+//         return maxDiff;
+        
+        
+//         for optimal solution
+        return findDiffUtil(root,root.val,root.val);
     }
 }
